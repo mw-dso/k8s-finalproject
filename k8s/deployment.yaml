@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: k8s-finalproject
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: k8s-finalproject
