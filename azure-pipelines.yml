@@ -19,5 +19,6 @@ steps:
     kubernetesServiceConnection: 'svc-k8s-cluster'
     namespace: 'default'
     manifests: |
+      wp/secret.yaml
       wp/mysql-pvc.yaml
       wp/mysql-deployment.yaml
