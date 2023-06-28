@@ -22,3 +22,5 @@ steps:
       wp/secret.yaml
       wp/mysql-pvc.yaml
       wp/mysql-deployment.yaml
+      wp/wordpress-pvc.yaml
+      wp/wordpress-deployment.yaml
