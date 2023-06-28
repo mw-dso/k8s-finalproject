@@ -16,6 +16,7 @@ spec:
       containers:
       - name: k8s-finalproject
         image: mohdwazid/k8s-finalproject:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         resources:
