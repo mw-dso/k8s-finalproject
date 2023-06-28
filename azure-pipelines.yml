@@ -11,22 +11,6 @@ pool:
 
 steps:
 
-- task: DockerInstaller@0
-  displayName: Installing Docker 17
-  inputs:
-    dockerVersion: '17.09.0-ce'
-
-- task: Docker@2
-  displayName: Pushing on Docker Hub
-  inputs:
-    containerRegistry: 'mohdwazid-dockerhub'
-    repository: 'mohdwazid/k8s-finalproject'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: latest
-    addPipelineData: false
-    addBaseImageData: false
-
 - task: KubernetesManifest@1
   displayName: Deploying on GKE K8s
   inputs:
@@ -35,5 +19,5 @@ steps:
     kubernetesServiceConnection: 'svc-k8s-cluster'
     namespace: 'default'
     manifests: |
-      k8s/deployment.yaml
-      k8s/service.yaml
+      wp/mysql-pvc.yaml
+      wp/mysql-deployment.yaml
