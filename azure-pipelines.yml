@@ -10,10 +10,30 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: DockerInstaller@0
+  displayName: Installing Docker 17
+  inputs:
+    dockerVersion: '17.09.0-ce'
+
+- task: Docker@2
+  displayName: Pushing on Docker Hub
+  inputs:
+    containerRegistry: 'mohdwazid-dockerhub'
+    repository: 'mohdwazid/k8s-finalproject'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: latest
+    addPipelineData: false
+    addBaseImageData: false
+
+- task: KubernetesManifest@1
+  displayName: Deploying on GKE K8s
+  inputs:
+    action: 'deploy'
+    connectionType: 'kubernetesServiceConnection'
+    kubernetesServiceConnection: 'svc-k8s-cluster'
+    namespace: 'default'
+    manifests: |
+      k8s/deployment.yaml
+      k8s/service.yaml
