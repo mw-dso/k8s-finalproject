@@ -18,8 +18,8 @@ steps:
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'svc-k8s-cluster'
     namespace: 'default'
-    manifests: |
-      wp/secret.yaml
-      wp/wordpress-deployment.yaml
-      wp/wordpress-service.yaml
-      wp/ingress.yaml
+#    manifests: |
+#     wp/secret.yaml
+#      wp/wordpress-deployment.yaml
+#      wp/wordpress-service.yaml
+#      wp/ingress.yaml
