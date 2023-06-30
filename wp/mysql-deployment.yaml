@@ -12,6 +12,19 @@ spec:
     tier: mysql
   clusterIP: None
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: wordpress
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,7 +46,6 @@ spec:
     spec:
       containers:
       - image: mysql:8.0
-        imagePullPolicy: Always
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
@@ -59,4 +71,4 @@ spec:
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim1
+          claimName: mysql-pv-claim

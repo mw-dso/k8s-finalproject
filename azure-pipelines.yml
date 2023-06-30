@@ -20,7 +20,7 @@ steps:
     namespace: 'default'
     manifests: |
       wp/secret.yaml
-      wp/mysql-pvc.yaml
       wp/mysql-deployment.yaml
-      wp/wordpress-pvc.yaml
       wp/wordpress-deployment.yaml
+      wp/wordpress-service.yaml
+      wp/ingress.yaml
